@@ -7,6 +7,7 @@
 {%+ else -%}
 {%+  if (zone.counter): -%}
 	counter {%+ endif -%}
+log group 1 prefix "{{verdict}} {{ zone.name }} {{ egress ? "out" : "in" }}: "
 {%+  if (verdict != "accept" && (zone.log & 1)): -%}
 	log prefix "{{ verdict }} {{ zone.name }} {{ egress ? "out" : "in" }}: " {%+ endif -%}
 {%   if (verdict == "reject"): -%}

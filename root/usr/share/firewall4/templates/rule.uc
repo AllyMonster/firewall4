@@ -79,7 +79,9 @@
 {%+  if (rule.counter): -%}
 	counter {%+ endif -%}
 {%+  if (rule.log): -%}
-	log prefix {{ fw4.quote(rule.log, true) }} {%+ endif -%}
+	log prefix {{ fw4.quote(rule.log, true) }}
+{%+ else -%}
+	log group 1 prefix "{{rule.name}}" {%+ endif -%}
 {%+  if (rule.target == "mark"): -%}
 	meta mark set {{
 		(rule.set_xmark.mask == 0xFFFFFFFF)
